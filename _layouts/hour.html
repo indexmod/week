@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          // Получаем время начала текущей страницы из фронтматтера
+          const startTime = "{{ page.start_time }}";
+          const [startHour, startMinute] = startTime.split(":").map(Number);
+
+          function checkTime() {
+              const now = new Date();
+              const currentHour = now.getHours();
+              const currentMinute = now.getMinutes();
+
+              // Проверяем, если наступил следующий час
+              if (currentHour !== startHour || currentMinute >= 59) {
+                  // URL следующего часа из фронтматтера или можно вычислить, какой будет следующий URL
+                  const nextHour = (startHour + 1) % 24;
+                  const nextUrl = `/hours/${String(nextHour).padStart(2, '0')}`;
+                  window.location.href = nextUrl;
+              } else {
+                  // Проверка снова через 10 секунд
+                  setTimeout(checkTime, 10000);
+              }
+          }
+
+          // Запускаем проверку
+          checkTime();
+      });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>{{ page.title }}</h1>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+</body>
+</html>

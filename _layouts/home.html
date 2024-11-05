@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const currentHour = new Date().getHours().toString().padStart(2, '0');
+          const redirectUrl = `/hours/${currentHour}`;
+
+          // Получаем значение задержки из фронтматтера (по умолчанию 5000, если не указано)
+          const delay = {{ page.redirect_delay | default: 5000 }};
+
+          // Выполняем редирект с задержкой
+          setTimeout(function() {
+              window.location.href = redirectUrl;
+          }, delay);
+      });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Загрузка...</h1>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+</body>
+</html>
