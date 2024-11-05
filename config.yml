@@ -1,7 +1,7 @@
 title: "WEEK Radio Schedule"
 description: "Циклический сайт для 24 часов вещания"
 baseurl: ""  # Если сайт будет на поддомене, укажите базовый URL здесь
-url: "https://ваш-домен.github.io/week"  # Замените на фактический URL вашего репозитория GitHub Pages
+url: "https://week.indexmod.xyz"  # Замените на фактический URL вашего репозитория GitHub Pages
 
 # Папка для хранения 24-часовых страниц
 collections:
