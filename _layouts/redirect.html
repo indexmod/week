@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     {% if page.redirect_to %}
     <!-- Таймер перенаправления -->
-    <meta http-equiv="refresh" content="{{ page.redirect_delay }};url={{ page.redirect_to }}">
+    <meta http-equiv="refresh" content="{{ page.duration }};url={{ page.redirect_to }}">
     {% endif %}
 </head>
 <body>
     <div class="centered-content">
         {{ content }}
     </div>
+    {% if page.redirect_to %}
+    <p>Перенаправление на: <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
+    {% endif %}
 </body>
 </html>
