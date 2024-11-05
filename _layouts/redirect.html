@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <!-- Подключение внешнего файла стилей -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+
+    {% assign current_hour = "now" | date: "%H" | plus: 0 %}
     {% if page.redirect_to %}
+    {% assign redirect_url = page.redirect_to | prepend: site.baseurl %}
     <!-- Таймер перенаправления -->
-    <meta http-equiv="refresh" content="{{ page.duration }};url={{ page.redirect_to }}">
+    <meta http-equiv="refresh" content="{{ page.duration }};url={{ redirect_url }}">
+    {% else %}
+    <!-- Перенаправление на текущий час, если нет redirect_to -->
+    <meta http-equiv="refresh" content="0;url={{ site.baseurl }}/hours/{{ current_hour | format: '%02d' }}">
     {% endif %}
 </head>
 <body>
@@ -16,7 +22,7 @@
         {{ content }}
     </div>
     {% if page.redirect_to %}
-    <p>Перенаправление на: <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
+    <p>Перенаправление на: <a href="{{ redirect_url }}">{{ redirect_url }}</a></p>
     {% endif %}
 </body>
 </html>
