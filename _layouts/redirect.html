@@ -4,27 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <style>
-        /* Стили для центрирования текста */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .centered-content h1 {
-            font-size: 4em;
-            text-align: center;
-        }
-    </style>
+    <!-- Подключение внешнего файла стилей -->
+    <link rel="stylesheet" href="/assets/css/style.css">
     {% if page.redirect_to %}
     <!-- Таймер перенаправления -->
     <meta http-equiv="refresh" content="{{ page.redirect_delay }};url={{ page.redirect_to }}">
     {% endif %}
 </head>
 <body>
-    {{ content }}
+    <div class="centered-content">
+        {{ content }}
+    </div>
 </body>
 </html>
