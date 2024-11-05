@@ -1,0 +1,39 @@
+title: "WEEK Radio Schedule"
+description: "Циклический сайт для 24 часов вещания"
+baseurl: ""  # Если сайт будет на поддомене, укажите базовый URL здесь
+url: "https://ваш-домен.github.io/week"  # Замените на фактический URL вашего репозитория GitHub Pages
+
+# Папка для хранения 24-часовых страниц
+collections:
+  hours:
+    output: true
+    permalink: /:collection/:name  # URL-структура для каждой страницы часа
+
+# Настройка генерации страниц и их взаимодействия
+defaults:
+  - scope:
+      path: "_hours"
+      type: "hours"
+    values:
+      layout: hour
+      days_of_week: "1234567"  # Показ ежедневно
+      duration: 3600  # 1 час в секундах
+
+# Подключение папок с макетами, стилями и инклюдами
+include:
+  - "_layouts"
+  - "_hours"
+  - "assets"
+
+# Локальная конфигурация (если нужно)
+timezone: "Europe/Moscow"  # Укажите ваш часовой пояс
+
+# Подключение плагинов, если нужно
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Дополнительные настройки
+markdown: kramdown
+kramdown:
+  input: GFM
