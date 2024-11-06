@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
-    <script>
+    <!-- Подключаем day-night.js через include -->
+    {% include day-night.js %}
+  <script>
         document.addEventListener("DOMContentLoaded", function() {
             function redirectToNextHour() {
                 const now = new Date();

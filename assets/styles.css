@@ -1,16 +1,31 @@
-/* Основные стили для всех страниц */
+/* Основной стиль для body */
 body {
     margin: 0;
     padding: 0;
     background-color: #001f3f; /* Темно-синий фон */
     color: white;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     text-align: center;
+    transition: filter 0.5s ease; /* Плавный переход */
 }
+
+/* Дополнительный стиль, который будет применен через JavaScript */
+.night {
+    filter: brightness(0.5); /* Уменьшенная яркость */
+}
+.dawn {
+    filter: brightness(0.8); /* Немного приглушенная яркость */
+}
+.day {
+    filter: brightness(1); /* Полная яркость */
+}
+.dusk {
+    filter: brightness(0.7); /* Умеренная яркость */
+}
+
 
 /* Стили для первой страницы */
 .index-page {
