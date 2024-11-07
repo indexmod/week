@@ -6,7 +6,7 @@
     <title>{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
     <!-- Подключаем day-night.js через include -->
-    {% include day-night.js %}
+    {% include day-night.html %}
     <script>
       document.addEventListener("DOMContentLoaded", function() {
           const currentHour = new Date().getHours().toString().padStart(2, '0');

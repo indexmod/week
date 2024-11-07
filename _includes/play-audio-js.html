@@ -1,0 +1,47 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const audioPlayer = document.getElementById("audio-player");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const progressBar = document.getElementById("progress-bar");
+    const currentTimeDisplay = document.getElementById("current-time");
+    const durationDisplay = document.getElementById("duration");
+
+    // Формируем путь к аудиофайлу из пермалинка
+    const permalink = "{{ page.permalink }}";  // Используем Jekyll-переменную для получения пермалинка
+    audioPlayer.querySelector("source").src = `/assets/audio${permalink}.mp3`;
+    audioPlayer.load();
+
+    // Автоматическое воспроизведение с текущей минуты
+    audioPlayer.addEventListener("loadedmetadata", () => {
+        const currentMinute = new Date().getMinutes();
+        audioPlayer.currentTime = currentMinute * 60;  // Устанавливаем на текущую минуту
+        durationDisplay.textContent = formatTime(audioPlayer.duration);
+        audioPlayer.play();
+    });
+
+    // Переключение воспроизведения
+    playPauseBtn.addEventListener("click", () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.textContent = "Пауза";
+        } else {
+            audioPlayer.pause();
+            playPauseBtn.textContent = "Воспроизвести";
+        }
+    });
+
+    // Обновление прогресс-бара
+    audioPlayer.addEventListener("timeupdate", () => {
+        const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+    });
+
+    // Форматирование времени
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' + secs : secs}`;
+    }
+});
+</script>
