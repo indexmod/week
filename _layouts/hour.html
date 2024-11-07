@@ -7,41 +7,14 @@
     <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
     <!-- Подключаем day-night.js через include -->
     {% include day-night.html %}
-  <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function redirectToNextHour() {
-                const now = new Date();
-                const currentHour = now.getHours();
-                const nextHour = (currentHour + 1) % 24;
-
-                // Рассчитаем оставшиеся миллисекунды до следующего часа
-                const timeToNextHour = (60 - now.getMinutes()) * 60 * 1000 - now.getSeconds() * 1000;
-
-                // Проверим, совпадает ли текущий час страницы с часом в URL
-                const pageHour = parseInt("{{ page.start_time }}", 10);
-                if (pageHour !== currentHour) {
-                    window.location.href = `/hours/${currentHour.toString().padStart(2, '0')}`;
-                    return;
-                }
-
-                // Установим таймер для перенаправления на следующий час
-                setTimeout(function() {
-                    window.location.href = `/hours/${nextHour.toString().padStart(2, '0')}`;
-                }, timeToNextHour);
-            }
-
-            redirectToNextHour();
-        });
-    </script>
+    {% include next-hour.html %}
     {% include play-audio-js.html %}
 </head>
 <body>
-    <header>
-        <h1>{{ page.title }}</h1>
-    </header>
-    <main>
-      {% include audio.html %}
-        {{ content }}
-    </main>
+<main>
+  <h1>{{ page.title }}</h1>
+  {% include audio.html %}
+  <p>{{ content }}<p>
+</main>
 </body>
 </html>
