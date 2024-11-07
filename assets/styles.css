@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #001f3f; /* Темно-синий фон */
+    background-color: #001f3f;
     color: white;
     display: flex;
     flex-direction: column;
@@ -10,37 +10,33 @@ body {
     justify-content: center;
     height: 100vh;
     text-align: center;
-    font-family: monospace; /* Моноширинный веб-безопасный шрифт */
-    text-transform: uppercase; /* Преобразование текста в верхний регистр */
-    transition: filter 0.5s ease;
-    box-sizing: border-box; /* Унифицированное поле для адаптивности */
-}
-
-/* Стили для заголовка */
-header, main, p {
     font-family: monospace;
     text-transform: uppercase;
+    transition: filter 0.5s ease;
+    box-sizing: border-box;
 }
 
-/* Основной контейнер для адаптивности */
+/* Контейнер для адаптивности */
 .container {
-    width: 90%; /* Адаптивная ширина */
-    max-width: 600px; /* Ограничение максимальной ширины */
+    width: 90%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* Стили для кастомного аудиоплеера */
+/* Стиль для кастомного аудиоплеера */
 .custom-audio-player {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
-    width: 100%; /* Адаптивная ширина */
+    width: 90%;
+    max-width: 600px;
 }
 
-/* Стиль кнопки воспроизведения/паузы */
+/* Кнопка воспроизведения */
 #play-pause-btn {
     background-color: #4CAF50;
     border: none;
@@ -51,36 +47,35 @@ header, main, p {
     border-radius: 4px;
     font-family: monospace;
     text-transform: uppercase;
-    flex-shrink: 0; /* Фиксированная ширина кнопки */
+    width: 100%;
+    max-width: 200px;
 }
 
-/* Стили для контейнера прогресс-бара */
+/* Время воспроизведения */
+.time-display {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Контейнер для прогресс-бара */
 .progress-container {
-    flex-grow: 1;
     background-color: #555;
     border-radius: 5px;
-    overflow: hidden;
-    width: 100%; /* Адаптивная ширина */
-    max-width: 100%;
+    width: 90%;
     height: 10px;
     position: relative;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
-/* Стили для самой прогресс-линией */
+/* Прогресс-бар */
 .progress-bar {
     background-color: #4CAF50;
     height: 100%;
     width: 0;
     transition: width 0.1s;
-}
-
-/* Цвет текста для времени */
-#current-time,
-#duration {
-    font-size: 14px;
-    color: #ffffff;
-    font-family: monospace;
-    text-transform: uppercase;
 }
 
 /* Респонсивные стили для мобильных устройств */
@@ -90,10 +85,9 @@ header, main, p {
         font-size: 14px;
     }
     .custom-audio-player {
-        flex-direction: column; /* Вертикальное расположение на маленьких экранах */
+        width: 100%; /* Растягиваем на всю ширину */
     }
-    #current-time,
-    #duration {
+    .time-display {
         font-size: 12px;
     }
 }
