@@ -5,70 +5,12 @@ body {
     background-color: #001f3f; /* Темно-синий фон */
     color: white;
     display: flex;
-    flex-direction: column; /* Устанавливаем вертикальное размещение элементов */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     text-align: center;
-    transition: filter 0.5s ease; /* Плавный переход */
-}
-
-/* Дополнительный стиль, который будет применен через JavaScript */
-.night {
-    filter: brightness(0.5); /* Уменьшенная яркость */
-}
-.dawn {
-    filter: brightness(0.8); /* Немного приглушенная яркость */
-}
-.day {
-    filter: brightness(1); /* Полная яркость */
-}
-.dusk {
-    filter: brightness(0.7); /* Умеренная яркость */
-}
-
-/* Стили для заголовка */
-header {
-    margin-bottom: 20px; /* Отступ снизу для отделения от основного контента */
-    font-family: "Georgia", serif;
-    font-size: 2.5vw; /* Респонсивный размер заголовка */
-    color: #ffffff;
-}
-
-/* Стили для основного контента */
-main {
-    font-size: 1.2vw; /* Респонсивный размер текста для основного контента */
-    max-width: 90%; /* Ограничение ширины контента для улучшения читаемости */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
-    border-radius: 8px; /* Закругленные углы */
-}
-
-/* Стили для абзацев */
-p {
-    font-family: "Verdana", sans-serif;
-    font-size: 15px;
-    line-height: 1.6; /* Межстрочный интервал для улучшения читаемости */
-    margin: 10px 0; /* Отступ сверху и снизу */
-}
-
-/* Дополнительные стили для респонсивности */
-@media (max-width: 768px) {
-    .index-page {
-        font-size: 15vw;
-    }
-    .hour-page {
-        font-size: 4vw;
-    }
-    header {
-        font-size: 4vw;
-    }
-    main {
-        font-size: 3vw;
-    }
-    p {
-        font-size: 30px;
-    }
+    transition: filter 0.5s ease;
 }
 
 /* Стили для кастомного аудиоплеера */
@@ -76,10 +18,12 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 90%; /* Адаптивная ширина */
+    max-width: 600px; /* Ограничение максимальной ширины */
 }
 
 #play-pause-btn {
-    background-color: #4CAF50; /* Цвет кнопки */
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 8px;
@@ -88,13 +32,14 @@ p {
     border-radius: 4px;
 }
 
+/* Стили для контейнера и прогресс-бара */
 .progress-container {
     flex-grow: 1;
-    background-color: #ddd;
+    background-color: #555; /* Темнее для лучшего контраста */
     border-radius: 5px;
     overflow: hidden;
-    width: calc(100% - 10%); /* Ширина -10% */
-    max-width: 100%;
+    width: 100%; /* Ширина контейнера */
+    max-width: calc(100% - 10%); /* Ширина -10% */
     height: 10px;
     position: relative;
 }
@@ -104,11 +49,11 @@ p {
     height: 100%;
     width: 0;
     transition: width 0.1s;
-    border-radius: 5px;
 }
 
+/* Цвет текста для времени */
 #current-time,
 #duration {
     font-size: 14px;
-    color: #333;
+    color: #ffffff; /* Установить белый цвет */
 }

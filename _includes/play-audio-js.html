@@ -2,19 +2,19 @@
 document.addEventListener("DOMContentLoaded", function() {
     const audioPlayer = document.getElementById("audio-player");
     const playPauseBtn = document.getElementById("play-pause-btn");
-    const progressBar = document.getElementById("progress-bar");
+    const progressBar = document.querySelector(".progress-bar");
     const currentTimeDisplay = document.getElementById("current-time");
     const durationDisplay = document.getElementById("duration");
 
     // Формируем путь к аудиофайлу из пермалинка
-    const permalink = "{{ page.permalink }}";  // Используем Jekyll-переменную для получения пермалинка
+    const permalink = "{{ page.permalink }}";  // Jekyll-переменная для получения пермалинка
     audioPlayer.querySelector("source").src = `/assets/audio${permalink}.mp3`;
     audioPlayer.load();
 
-    // Автоматическое воспроизведение с текущей минуты
+    // Автоматическое воспроизведение с текущей минуты после загрузки метаданных
     audioPlayer.addEventListener("loadedmetadata", () => {
         const currentMinute = new Date().getMinutes();
-        audioPlayer.currentTime = currentMinute * 60;  // Устанавливаем на текущую минуту
+        audioPlayer.currentTime = currentMinute * 60;  // Устанавливаем позицию на текущую минуту
         durationDisplay.textContent = formatTime(audioPlayer.duration);
         audioPlayer.play();
     });
@@ -30,14 +30,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Обновление прогресс-бара
+    // Обновление прогресс-бара и текущего времени
     audioPlayer.addEventListener("timeupdate", () => {
         const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = `${progressPercent}%`;
         currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
     });
 
-    // Форматирование времени
+    // Форматирование времени в минутах и секундах
     function formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
