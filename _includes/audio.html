@@ -1,0 +1,15 @@
+<!-- Аудио элемент скрыт -->
+<audio id="audio-player" autoplay>
+    <source src="/assets/audio/{{ page.permalink }}.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает воспроизведение аудио.
+</audio>
+
+<!-- Кастомный аудио-плеер -->
+<div class="custom-audio-player">
+  <button id="play-pause-btn">Звук</button>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+<span id="current-time">0:00</span><span style="color: black;">/</span><span id="duration">0:00</span>
+</div>

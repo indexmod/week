@@ -6,7 +6,7 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
     <!-- Подключаем day-night.js через include -->
-    {% include day-night.js %}
+    {% include day-night.html %}
   <script>
         document.addEventListener("DOMContentLoaded", function() {
             function redirectToNextHour() {
@@ -33,12 +33,14 @@
             redirectToNextHour();
         });
     </script>
+    {% include play-audio-js.html %}
 </head>
 <body>
     <header>
         <h1>{{ page.title }}</h1>
     </header>
     <main>
+      {% include audio.html %}
         {{ content }}
     </main>
 </body>
