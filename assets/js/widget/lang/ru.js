@@ -3,7 +3,7 @@ window.CUSDIS_LOCALE = {
   email: "@ ...",
   reply: "Ответить...",
   comment: "Комментарий",
-  powered_by: 'Комментарии by Cusdis',
+  powered_by: 'Week Indexmod',
   post_comment: 'Отправить комментарий',
   loading: 'Загрузка...',
 
@@ -18,7 +18,7 @@ window.CUSDIS_LOCALE = {
   comment_has_been_sent: 'Комментарий отправлен. Он будет опубликован после проверки.',
 
   // Специальные метки
-  mod_badge: 'МОД',
+  mod_badge: 'Андрей',
 
   // Дополнительные переводы для reply
   reply_placeholder: 'Ответ',
