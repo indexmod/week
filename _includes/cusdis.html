@@ -1,17 +1,17 @@
 <script>window.CUSDIS_LOCALE.powered_by = "Модерирует:";</script>
 
+
 <iframe
   srcdoc="
     <html>
       <head>
-        <link rel='stylesheet' href='/assets/cusdis-custom.css'>
         <style>
           body {
-            background-color: transparent;
-            color: white;
+            background-color: #f0f0f0;
+            color: #333;
           }
           .cusdis-thread {
-            font-family: 'Monaco';
+            font-family: 'Arial', sans-serif;
           }
           /* Дополнительные стили для кнопок, полей ввода и других элементов */
         </style>
@@ -19,7 +19,7 @@
       <body>
         <div id='cusdis_thread'
           data-host='https://cusdis.com'
-          data-app-id='your-app-id'
+          data-app-id='7d521d26-c86e-4b7e-b7d7-16bad87a722c'
           data-page-id='{{ page.permalink }}'
           data-page-url='{{ site.url | append: page.permalink }}'
           data-page-title='{{ page.title }}'>
@@ -30,6 +30,8 @@
   height="500"
   frameborder="0">
 </iframe>
+
+
 
 
 <script async defer src="{{ site.baseurl }}/assets/js/cusdis.es.js"></script>
