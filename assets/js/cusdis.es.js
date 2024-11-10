@@ -20,36 +20,41 @@ const makeIframeContent = (target) => {
       }
       /* Кастомные стили для виджета */
       body {
-        font-family: "Courier New", Courier, monospace;
+      font-family: monospace;
+      text-transform: uppercase;
         background-color: transparent;
-        color: #ffffff;
+        color: red;
         overflow: hidden; /* Запрет скролла */
       }
       .cusdis-thread {
-        padding: 20px;
+
+      margin: 10px;
+        padding: 0px;
       }
       .cusdis-btn {
-        font-family: "Courier New", Courier, monospace;
-        background-color: #4CAF50;
-        color: #fff;
+      font-family: monospace;
+      text-transform: uppercase;
+        background-color: transparent;
+        color: red;
         border: none;
         border-radius: 5px;
         padding: 10px 20px;
         cursor: pointer;
       }
       .cusdis-input {
-        font-family: "Courier New", Courier, monospace;
-        background-color: #333;
+      text-transform: uppercase;
+        background-color: transparent;
         color: #fff;
-        border: 1px solid #4CAF50;
+        border: 1px solid red;
         border-radius: 5px;
         padding: 5px;
       }
       .cusdis-input::placeholder {
-        color: #aaa;
+        color: red;
       }
       .cusdis-comment {
-        font-family: "Courier New", Courier, monospace;
+      text-transform: uppercase;
+        background-color: transparent;
         margin-bottom: 15px;
         padding: 10px;
         border-radius: 5px;
