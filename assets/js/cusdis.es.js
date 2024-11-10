@@ -3,141 +3,92 @@ const makeIframeContent = (target) => {
   const host = target.dataset.host || "https://cusdis.com";
   const iframeJsPath = target.dataset.iframe || `${host}/js/iframe.umd.js`;
   const cssPath = `${host}/js/style.css`;
-
-  // Обновленный HTML с кастомными стилями
   return `<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="${cssPath}">
     <base target="_parent" />
+    <link>
     <script>
-      window.CUSDIS_LOCALE = ${JSON.stringify(window.CUSDIS_LOCALE)};
-      window.__DATA__ = ${JSON.stringify(target.dataset)};
+      window.CUSDIS_LOCALE = ${JSON.stringify(window.CUSDIS_LOCALE)}
+      window.__DATA__ = ${JSON.stringify(target.dataset)}
     <\/script>
     <style>
       :root {
         color-scheme: light;
       }
-      /* Кастомные стили для виджета */
-      body {
-      font-family: monospace;
-      text-transform: uppercase;
-        background-color: transparent;
-        color: red;
-        overflow: hidden; /* Запрет скролла */
-      }
-      .cusdis-thread {
-
-      margin: 10px;
-        padding: 0px;
-      }
-      .cusdis-btn {
-      font-family: monospace;
-      text-transform: uppercase;
-        background-color: transparent;
-        color: red;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        cursor: pointer;
-      }
-      .cusdis-input {
-      text-transform: uppercase;
-        background-color: transparent;
-        color: #fff;
-        border: 1px solid red;
-        border-radius: 5px;
-        padding: 5px;
-      }
-      .cusdis-input::placeholder {
-        color: red;
-      }
-      .cusdis-comment {
-      text-transform: uppercase;
-        background-color: transparent;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.5); /* Прозрачный фон */
-      }
     </style>
   </head>
   <body>
     <div id="root"></div>
-    <script src="${iframeJsPath}" type="module"><\/script>
+    <script src="${iframeJsPath}" type="module">
+
+    <\/script>
   </body>
 </html>`;
 };
-
 let singleTonIframe;
-
 function createIframe(target) {
   if (!singleTonIframe) {
     singleTonIframe = document.createElement("iframe");
     listenEvent(singleTonIframe, target);
   }
   singleTonIframe.srcdoc = makeIframeContent(target);
-
-  // Устанавливаем фиксированные размеры и запрет скролла
-  singleTonIframe.style.width = "600px";
-  singleTonIframe.style.height = "400px";
+  singleTonIframe.style.width = "100%";
   singleTonIframe.style.border = "0";
-  singleTonIframe.style.overflow = "hidden";
-  singleTonIframe.style.backgroundColor = "transparent"; // Прозрачный фон для iframe
-
   return singleTonIframe;
 }
-
 function postMessage(event, data) {
   if (singleTonIframe) {
     singleTonIframe.contentWindow.postMessage(
       JSON.stringify({
         from: "cusdis",
         event,
-        data,
+        data
       })
     );
   }
 }
-
 function listenEvent(iframe, target) {
   const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
   const onMessage = (e) => {
     try {
       const msg = JSON.parse(e.data);
       if (msg.from === "cusdis") {
         switch (msg.event) {
           case "onload":
-            if (target.dataset.theme === "auto") {
-              postMessage("setTheme", darkModeQuery.matches ? "dark" : "light");
+            {
+              if (target.dataset.theme === "auto") {
+                postMessage(
+                  "setTheme",
+                  darkModeQuery.matches ? "dark" : "light"
+                );
+              }
             }
             break;
           case "resize":
-            iframe.style.height = msg.data + "px";
+            {
+              iframe.style.height = msg.data + "px";
+            }
             break;
         }
       }
-    } catch (e2) {}
+    } catch (e2) {
+    }
   };
-
   window.addEventListener("message", onMessage);
-
   function onChangeColorScheme(e) {
     const isDarkMode = e.matches;
     if (target.dataset.theme === "auto") {
       postMessage("setTheme", isDarkMode ? "dark" : "light");
     }
   }
-
   darkModeQuery.addEventListener("change", onChangeColorScheme);
-
   return () => {
     darkModeQuery.removeEventListener("change", onChangeColorScheme);
     window.removeEventListener("message", onMessage);
   };
 }
-
 function render(target) {
   if (target) {
     target.innerHTML = "";
@@ -145,13 +96,11 @@ function render(target) {
     target.appendChild(iframe);
   }
 }
-
 window.renderCusdis = render;
 window.CUSDIS.renderTo = render;
-window.CUSDIS.setTheme = function (theme) {
+window.CUSDIS.setTheme = function(theme) {
   postMessage("setTheme", theme);
 };
-
 function initial() {
   let target;
   if (window.cusdisElementId) {
@@ -159,14 +108,18 @@ function initial() {
   } else if (document.querySelector("#cusdis_thread")) {
     target = document.querySelector("#cusdis_thread");
   } else if (document.querySelector("#cusdis")) {
-    console.warn("id `cusdis` is deprecated. Please use `cusdis_thread` instead");
+    console.warn(
+      "id `cusdis` is deprecated. Please use `cusdis_thread` instead"
+    );
     target = document.querySelector("#cusdis");
   }
-  if (window.CUSDIS_PREVENT_INITIAL_RENDER === true) return;
-  if (target) {
-    render(target);
+  if (window.CUSDIS_PREVENT_INITIAL_RENDER === true)
+    ;
+  else {
+    if (target) {
+      render(target);
+    }
   }
 }
-
 window.CUSDIS.initial = initial;
 initial();
