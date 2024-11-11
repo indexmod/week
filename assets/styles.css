@@ -38,39 +38,46 @@ body {
 }
 
 
-//* Кнопка воспроизведения */
+/* Кнопка воспроизведения */
 #play-pause-btn {
     background: none;
     color: white;
     border: none;
     padding: 0;
-    font-size: 80px; /* Увеличиваем размер шрифта */
+    font-size: 100px; /* Увеличиваем размер шрифта */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
-    width: 100px; /* Устанавливаем ширину */
-    height: 100px; /* Устанавливаем высоту */
+    width: 100px; /* Ширина кнопки */
+    height: 100px; /* Высота кнопки */
 }
 
-/* Стили для состояний кнопки */
+/* Стили для символа плей (треугольник) */
 #play-pause-btn::before {
-    content: "▶"; /* Символ плей */
+    content: "▲"; /* Используем равносторонний треугольник для лучшей пропорции */
     display: inline-block;
-    font-size: 80px; /* Увеличиваем размер шрифта для символа */
-    line-height: 1; /* Уменьшаем межстрочный интервал для центрирования */
+    font-size: 90px; /* Уменьшаем размер символа */
+    color: white; /* Белый цвет символа */
+    transform: rotate(90deg); /* Поворачиваем треугольник вправо */
 }
 
 /* Состояние воспроизведения (пауза) */
 #play-pause-btn.playing::before {
     content: "■"; /* Символ квадрата */
+    font-size: 80px; /* Подгоняем размер под треугольник */
+    color: white; /* Белый цвет символа */
 }
 
 /* Состояние паузы (плей) */
 #play-pause-btn.paused::before {
-    content: "▶"; /* Символ плей */
+    content: "▲"; /* Используем треугольник */
+    font-size: 90px;
+    color: white;
+    transform: rotate(90deg);
 }
+
 
 /* Стили для кружочка */
 .lime-circle {
