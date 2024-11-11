@@ -19,9 +19,10 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
-    padding: 5px; /* Дополнительный отступ внутри контейнера */
+    padding: 5px;
+    box-sizing: border-box; /* Учитываем padding в ширине */
 }
 
 /* Стиль для кастомного аудиоплеера */
@@ -32,23 +33,23 @@ body {
     gap: 10px;
     width: 100%;
     max-width: 600px;
-    padding: 5px; /* Отступ внутри аудиоплеера */
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 /* Кнопка воспроизведения */
 #play-pause-btn {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: lime;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    animation: none;
-    aspect-ratio: 1 / 1; /* Сохраняет соотношение сторон */
-    flex-shrink: 0; /* Запрещает уменьшение кнопки в flex-контейнере */
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
 }
 
-
+/* Анимации кнопки */
 #play-pause-btn.playing {
     animation: blink-fast 0.5s infinite;
 }
@@ -92,6 +93,7 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 10px;
+    box-sizing: border-box;
 }
 
 /* Прогресс-бар */
@@ -105,10 +107,13 @@ body {
 /* Респонсивные стили для мобильных устройств */
 @media (max-width: 768px) {
     body {
-        padding: 10px; /* Увеличиваем отступ на маленьких экранах */
+        padding: 10px;
+    }
+    .main-content {
+        padding: 10px;
+        width: 100%;
     }
     .custom-audio-player {
-        width: 100%;
         padding: 10px;
     }
     .time-display {
