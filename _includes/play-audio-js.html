@@ -34,6 +34,9 @@
           }
       }
 
+      // Устанавливаем начальное состояние кнопки
+      playPauseBtn.classList.add("paused");
+
       // Обработчики событий
       playPauseBtn.addEventListener("click", togglePlayPause);
       document.addEventListener("click", (event) => {
