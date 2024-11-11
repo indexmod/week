@@ -39,9 +39,6 @@
 
       // Обработчики событий
       playPauseBtn.addEventListener("click", togglePlayPause);
-      document.addEventListener("click", (event) => {
-          if (event.target !== playPauseBtn) togglePlayPause();
-      });
       document.addEventListener("keydown", (event) => {
           if (event.code === "Space") {
               event.preventDefault();
@@ -49,23 +46,13 @@
           }
       });
 
-      let mouseMoved = false;
-      function handleMouseActivity() {
-          if (audioPlayer.paused && !mouseMoved) {
-              togglePlayPause();
-              mouseMoved = true;
-              setTimeout(() => (mouseMoved = false), 1000);
-          }
-      }
-
-      document.addEventListener("mousemove", handleMouseActivity);
-      document.addEventListener("scroll", handleMouseActivity);
-
       // Обновление прогресс-бара
       audioPlayer.addEventListener("timeupdate", () => {
-          const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-          progressBar.style.width = `${progressPercent}%`;
-          currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+          if (audioPlayer.duration) {
+              const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+              progressBar.style.width = `${progressPercent}%`;
+              currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+          }
       });
 
       // Форматирование времени
@@ -74,5 +61,13 @@
           const secs = Math.floor(seconds % 60);
           return `${mins}:${secs < 10 ? '0' + secs : secs}`;
       }
+
+      // Убираем автоматическое воспроизведение при движении мыши
+      let autoPlayDisabled = true;
+      document.addEventListener("mousemove", () => {
+          if (autoPlayDisabled) {
+              autoPlayDisabled = false;
+          }
+      });
   });
 </script>
