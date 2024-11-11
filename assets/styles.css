@@ -37,6 +37,13 @@ body {
     box-sizing: border-box;
 }
 
+.play-btn-wrapper {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+}
+
+
 /* Кнопка воспроизведения */
 #play-pause-btn {
     width: 12px;
