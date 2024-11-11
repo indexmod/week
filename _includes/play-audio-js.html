@@ -20,15 +20,60 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Переключение воспроизведения
-    playPauseBtn.addEventListener("click", () => {
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const audioPlayer = document.getElementById("audio-player");
+
+    // Функция переключения воспроизведения
+    function togglePlayPause() {
         if (audioPlayer.paused) {
             audioPlayer.play();
-            playPauseBtn.textContent = "Пауза";
+            playPauseBtn.classList.remove("paused");
+            playPauseBtn.classList.add("playing");
         } else {
             audioPlayer.pause();
-            playPauseBtn.textContent = "Звук";
+            playPauseBtn.classList.remove("playing");
+            playPauseBtn.classList.add("paused");
+        }
+    }
+
+    // Обработчик клика по кнопке
+    playPauseBtn.addEventListener("click", togglePlayPause);
+
+    // Обработчик клика по любой части экрана
+    document.addEventListener("click", (event) => {
+        // Исключаем клик по кнопке, чтобы избежать двойного срабатывания
+        if (event.target !== playPauseBtn) {
+            togglePlayPause();
         }
     });
+
+    // Обработчик нажатия клавиши (спейсбар)
+    document.addEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+            event.preventDefault(); // Предотвращаем прокрутку страницы
+            togglePlayPause();
+        }
+    });
+
+    // Обработчик движения мыши и скролла
+    let mouseMoved = false;
+
+    function handleMouseActivity() {
+        if (audioPlayer.paused && !mouseMoved) {
+            togglePlayPause();
+            mouseMoved = true;
+            // Сброс флага через 1 секунду, чтобы не повторялось при мелких движениях
+            setTimeout(() => (mouseMoved = false), 1000);
+        }
+    }
+
+    // Движение мыши
+    document.addEventListener("mousemove", handleMouseActivity);
+
+    // Скролл страницы
+    document.addEventListener("scroll", handleMouseActivity);
+
+
 
     // Обновление прогресс-бара и текущего времени
     audioPlayer.addEventListener("timeupdate", () => {

@@ -35,18 +35,41 @@ body {
 
 /* Кнопка воспроизведения */
 #play-pause-btn {
-    background-color: #4CAF50;
+    width: 20px;
+    height: 20px;
+    background-color: lime;
     border: none;
-    color: white;
-    padding: 10px 16px;
-    font-size: 16px;
+    border-radius: 50%;
     cursor: pointer;
-    border-radius: 4px;
-    font-family: monospace;
-    text-transform: uppercase;
-    width: 100%;
-    max-width: 200px;
+    animation: none;
 }
+
+#play-pause-btn.playing {
+    animation: blink-fast 0.5s infinite;
+}
+
+#play-pause-btn.paused {
+    animation: blink-slow 2s infinite;
+}
+
+@keyframes blink-fast {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
 
 /* Время воспроизведения */
 .time-display {
