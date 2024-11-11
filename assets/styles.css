@@ -72,6 +72,14 @@ body {
     content: "▶"; /* Символ плей */
 }
 
+/* Стили для кружочка */
+.lime-circle {
+    color: lime;
+    font-size: 1em; /* Размер совпадает с размером текста */
+    margin-right: 0.3em; /* Пробел между кружочком и временем */
+    display: inline-block;
+    line-height: 1;
+}
 
 
 /* Время воспроизведения */
