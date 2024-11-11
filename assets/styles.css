@@ -44,7 +44,10 @@ body {
     border-radius: 50%;
     cursor: pointer;
     animation: none;
+    aspect-ratio: 1 / 1; /* Сохраняет соотношение сторон */
+    flex-shrink: 0; /* Запрещает уменьшение кнопки в flex-контейнере */
 }
+
 
 #play-pause-btn.playing {
     animation: blink-fast 0.5s infinite;
