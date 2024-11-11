@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 5px; /* Отступ вокруг страницы */
-    background: linear-gradient(to bottom, #001f3f 0%, #002f5f 100%);
+    background: linear-gradient(to left, #001f3f 0%, #002f5f 100%);
     color: white;
     display: flex;
     align-items: center;
