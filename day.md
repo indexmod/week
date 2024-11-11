@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 permalink: day
 title: Расписание
 ---
