@@ -37,43 +37,42 @@ body {
     box-sizing: border-box;
 }
 
-.play-btn-wrapper {
-    display: inline-block;
-    width: fit-content;
-    height: fit-content;
-}
 
-
-/* Кнопка воспроизведения */
+//* Кнопка воспроизведения */
 #play-pause-btn {
     background: none;
     color: white;
     border: none;
     padding: 0;
-    font-size: 48px;
+    font-size: 80px; /* Увеличиваем размер шрифта */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
-    width: 60px;
-    height: 60px;
+    width: 100px; /* Устанавливаем ширину */
+    height: 100px; /* Устанавливаем высоту */
 }
 
 /* Стили для состояний кнопки */
 #play-pause-btn::before {
     content: "▶"; /* Символ плей */
     display: inline-block;
-    font-size: 48px;
+    font-size: 80px; /* Увеличиваем размер шрифта для символа */
+    line-height: 1; /* Уменьшаем межстрочный интервал для центрирования */
 }
 
+/* Состояние воспроизведения (пауза) */
 #play-pause-btn.playing::before {
-    content: "❚❚"; /* Символ паузы */
+    content: "■"; /* Символ квадрата */
 }
 
+/* Состояние паузы (плей) */
 #play-pause-btn.paused::before {
     content: "▶"; /* Символ плей */
 }
+
+
 
 /* Время воспроизведения */
 .time-display {
